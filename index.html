@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0d0b18">
+  <meta name="description" content="Món quà tình yêu huyền ảo và lãng mạn dành tặng vợ yêu - Kỷ niệm tình yêu từ 20/01/2026.">
+  <title>Gửi Vợ Yêu - Tình Yêu Huyền Ảo Của Đời Anh 💖 20.01.2026</title>
+
+  <!-- Google Fonts: Sang trọng, mềm mại, lãng mạn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Canvas Bầu Trời Sao & Hạt Huyền Ảo -->
+  <canvas id="starCanvas"></canvas>
+
+  <!-- Ánh Sáng Cực Quang & Tinh Vân Mờ Ảo -->
+  <div class="nebula-orb orb-1"></div>
+  <div class="nebula-orb orb-2"></div>
+  <div class="nebula-orb orb-3"></div>
+
+  <!-- Thanh Điều Khiển Tiện Ích Trên Cùng -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <span class="heart-pulse">❤️</span>
+      <span class="nav-title">Duy &amp; Thẻo Thẻo • 20/01/2026</span>
+    </div>
+    <div class="nav-actions">
+      <!-- Nút Âm Nhạc Du Dương -->
+      <button class="nav-btn" id="musicToggle" aria-label="Bật/Tắt nhạc tình yêu" title="Giai điệu tình yêu">
+        <span class="btn-icon">🎵</span>
+        <span class="btn-text">Giai Điệu</span>
+        <div class="equalizer-bars" id="eqBars">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+
+      <!-- Nút Mưa Cánh Hoa Hồng & Trái Tim -->
+      <button class="nav-btn" id="petalRainBtn" aria-label="Mưa hoa hồng" title="Thả ngàn nụ hoa và trái tim">
+        <span class="btn-icon">🌸</span>
+        <span class="btn-text">Mưa Hoa</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="main-container">
+
+    <!-- HERO HEADER -->
+    <header class="hero-header">
+      <div class="kicker-badge">
+        <span class="sparkle-icon">✦</span>
+        <span>BẢN TÌNH CA DÀNH RIÊNG CHO VỢ YÊU</span>
+        <span class="sparkle-icon">✦</span>
+      </div>
+      <h1 class="hero-title">
+        Gửi Thiên Thần Của Đời Anh, <br>
+        <span class="hero-highlight">Vợ Yêu Của Anh!</span>
+      </h1>
+      <p class="hero-desc">
+        Kể từ ngày <strong>20 tháng 01 năm 2026</strong>, vũ trụ bao la của anh đã có thêm một vì sao lấp lánh và dịu dàng nhất — đó chính là em.
+      </p>
+
+      <div class="connection-pill">
+        <span class="city">Sài Gòn</span>
+        <span class="connector">⟡</span>
+        <span class="city">Bắc Ninh</span>
+        <span class="divider">•</span>
+        <span class="promise">Khoảng cách xa, nhưng tim luôn gần ❤️</span>
+      </div>
+    </header>
+
+    <!-- ĐỒNG HỒ ĐẾM NGÀY YÊU NHAU HUYỀN ẢO -->
+    <section class="love-counter-section" aria-label="Thời gian bên nhau">
+      <div class="counter-header">
+        <div class="counter-subtitle">CHẶNG ĐƯỜNG CHUNG ĐÔI TỪ 20/01/2026</div>
+        <h2 class="counter-title">Từng Giây Phút Bên Em Đều Là Phép Màu</h2>
+      </div>
+
+      <div class="timer-grid">
+        <div class="timer-card">
+          <div class="timer-glass">
+            <span class="timer-num" id="daysCount">0</span>
+            <span class="timer-unit">Ngày</span>
+          </div>
+          <div class="timer-glow"></div>
+        </div>
+        <div class="timer-card">
+          <div class="timer-glass">
+            <span class="timer-num" id="hoursCount">00</span>
+            <span class="timer-unit">Giờ</span>
+          </div>
+          <div class="timer-glow"></div>
+        </div>
+        <div class="timer-card">
+          <div class="timer-glass">
+            <span class="timer-num" id="minutesCount">00</span>
+            <span class="timer-unit">Phút</span>
+          </div>
+          <div class="timer-glow"></div>
+        </div>
+        <div class="timer-card">
+          <div class="timer-glass">
+            <span class="timer-num" id="secondsCount">00</span>
+            <span class="timer-unit">Giây</span>
+          </div>
+          <div class="timer-glow"></div>
+        </div>
+      </div>
+
+      <!-- Cột Mốc Tình Yêu (Milestone Indicator) -->
+      <div class="milestone-container" id="milestoneBox">
+        <div class="milestone-info">
+          <span class="milestone-label">✨ Kỷ niệm tiếp theo:</span>
+          <span class="milestone-text" id="milestoneText">Đang tính toán cùng Python backend...</span>
+        </div>
+        <div class="milestone-progress-bar">
+          <div class="milestone-progress-fill" id="milestoneProgress"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHONG BÌ 3D HUYỀN ẢO (TÂM ĐIỂM) -->
+    <section class="envelope-section" aria-label="Bức thư tình huyền ảo">
+      <div class="envelope-aura"></div>
+      
+      <div class="envelope-stage">
+        <div class="envelope-wrapper" id="envelopeWrapper" role="button" tabindex="0" aria-label="Chạm để mở bức thư tình" aria-expanded="false">
+          <div class="envelope-3d">
+            <!-- Mặt sau phong bì -->
+            <div class="env-back"></div>
+            <!-- Bức thư hé lộ bên trong -->
+            <div class="env-letter-peek">
+              <div class="peek-line"></div>
+              <div class="peek-line short"></div>
+              <div class="peek-heart">♥</div>
+            </div>
+            <!-- Các cánh gấp phong bì -->
+            <div class="env-left"></div>
+            <div class="env-right"></div>
+            <div class="env-bottom"></div>
+            <!-- Nắp phong bì mở 3D -->
+            <div class="env-flap"></div>
+            <!-- Con dấu sáp hoàng gia phát sáng -->
+            <div class="wax-seal" id="waxSeal">
+              <span class="seal-inner">♥</span>
+              <span class="seal-glow"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tap-guide" id="tapGuide">
+          <span class="guide-hand">✨</span>
+          <span class="guide-text">Chạm vào phong bì để giải phóng lời yêu thương 💌</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NỘI DUNG LÁ THƯ TÌNH VIẾT BẰNG BÚT MỰC PHÁT SÁNG -->
+    <section class="letter-modal-card" id="letterCard" aria-live="polite">
+      <div class="letter-card-glow"></div>
+      
+      <div class="letter-paper">
+        <!-- Đường viền hoa văn vàng kim -->
+        <div class="letter-frame"></div>
+        
+        <div class="letter-header">
+          <div class="letter-tag">✦ THƯ TÌNH GỬI VỢ YÊU ✦</div>
+          <h2 class="letter-recipient">Gửi Thẻo Thẻo - Cô Gái Của Cả Cuộc Đời Anh</h2>
+          <div class="ornament-divider">
+            <span class="line"></span>
+            <span class="symbol">❦</span>
+            <span class="line"></span>
+          </div>
+        </div>
+
+        <!-- Khung chữ viết có bút dạ quang lướt theo -->
+        <div class="calligraphy-container">
+          <div class="glowing-quill" id="quillPen" aria-hidden="true">🖋️</div>
+          <div class="letter-content" id="letterContent"></div>
+        </div>
+
+        <div class="letter-signature" id="letterSignature">
+          <p class="sig-title">Mãi mãi thương và yêu vợ,</p>
+          <p class="sig-name">Chồng của em ❤️</p>
+          <span class="sig-date">Khắc ghi ngày 20.01.2026</span>
+        </div>
+
+        <!-- Nút Tương Tác Dưới Thư -->
+        <div class="letter-action-btns">
+          <button class="magic-btn primary" id="rewriteBtn">
+            <span class="btn-sparkle">✨</span> Đọc lại từ đầu 💌
+          </button>
+          <button class="magic-btn secondary" id="loveBurstBtn">
+            <span class="btn-sparkle">💖</span> Gửi ngàn nụ hôn
+          </button>
+          <button class="magic-btn accent" id="wishScrollBtn">
+            <span class="btn-sparkle">🌠</span> Gửi điều ước lên trời sao
+          </button>
+        </div>
+
+        <!-- Trích dẫn ngẫu nhiên từ Python backend -->
+        <div class="sweet-quote-box" id="quoteBox">
+          <span class="quote-symbol">“</span>
+          <p class="quote-text" id="quoteText">Đang kết nối lời thì thầm ngọt ngào...</p>
+          <span class="quote-symbol end">”</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NHỮNG LÝ DO ANH MÃI YÊU VỢ -->
+    <section class="reasons-section">
+      <div class="section-badge">NHỮNG ĐIỀU NHỎ BÉ KHIẾN ANH YÊU VỢ MỖI NGÀY</div>
+      <h2 class="section-title">Tại Sao Vợ Luôn Là Duy Nhất?</h2>
+
+      <div class="reasons-grid">
+        <div class="reason-card">
+          <div class="reason-icon">✨</div>
+          <h3>Nụ Cười Rạng Rỡ</h3>
+          <p>Mỗi khi thấy em cười qua màn hình, mọi mệt mỏi và âu lo trong ngày của anh dường như tan biến không dấu vết.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-icon">🌸</div>
+          <h3>Sự Dịu Dàng &amp; Ấm Áp</h3>
+          <p>Từng lời dặn dò, từng câu hỏi han của em luôn khiến anh cảm nhận được một mái ấm bình yên và tràn ngập tình thương.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-icon">🌟</div>
+          <h3>Khoảnh Khắc 20/01/2026</h3>
+          <p>Khoảnh khắc định mệnh gắn kết hai tâm hồn, biến những ngày bình thường thành những ngày ngập tràn kỳ tích.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-icon">♾️</div>
+          <h3>Tương Lai Có Em</h3>
+          <p>Mọi dự định, ước mơ và kế hoạch trong tương lai của anh đều luôn có em ở vị trí trung tâm thiêng liêng nhất.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HỘP ĐIỀU ƯỚC SAO BĂNG & LỜI NHẮN CHO NHAU -->
+    <section class="wishbox-section" id="wishSection">
+      <div class="wishbox-card">
+        <div class="wish-header">
+          <div class="wish-icon">🌠</div>
+          <h2>Hộp Điều Ước &amp; Kỷ Niệm Tình Yêu</h2>
+          <p>Vợ yêu ơi, hãy viết một điều ước hoặc lời nhắn gửi đến anh nhé. Lời nhắn sẽ được gửi riêng cho anh, không hiển thị công khai.</p>
+        </div>
+
+        <form class="wish-form" id="wishForm">
+          <div class="form-group">
+            <label for="senderInput">Tên người gửi yêu thương:</label>
+            <input type="text" id="senderInput" class="wish-input" name="name" value="Vợ yêu Thẻo Thẻo" placeholder="Vợ yêu / Chồng yêu..." maxlength="80" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="wishInput">Lời nhắn / Điều ước của vợ:</label>
+            <textarea id="wishInput" class="wish-textarea" name="message" rows="3" maxlength="2000" placeholder="Em ước hai đứa mình mãi hạnh phúc bên nhau..." required></textarea>
+          </div>
+          <button type="submit" class="submit-wish-btn" id="sendWishBtn">
+            <span class="btn-sparkle">✨</span> Thả Ngôi Sao Điều Ước Lên Trời 💫
+          </button>
+          <p class="wish-status" id="wishStatus" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="wishes-timeline" id="wishesTimeline">
+          <h3 class="timeline-title">✦ Những Lời Nhắn Ngọt Ngào ✦</h3>
+          <div class="wishes-list" id="wishesList">
+            <div class="loading-wishes">Những lời nhắn ở đây được gửi riêng cho anh và không hiển thị công khai.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="love-footer">
+      <div class="footer-heart">💖</div>
+      <p class="footer-main">Thiết kế bằng trọn vẹn tình yêu dành cho <strong>Thẻo Thẻo</strong></p>
+      <p class="footer-sub">Hành trình từ <strong>20/01/2026</strong> đến mãi mãi muôn đời sau ♾️</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

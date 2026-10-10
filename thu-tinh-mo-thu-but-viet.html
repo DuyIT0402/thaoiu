@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5eee5">
+<meta name="description" content="Một lá thư nhỏ, viết riêng cho người anh thương nhất.">
+<title>Một lá thư dành cho Thẻo Thẻo 💌</title>
+<style>
+:root{color-scheme:light;--paper:#fffdf8;--ink:#433a35;--wine:#743d4b;--rose:#bb6572;--leaf:#657765;--gold:#c69a5b;--line:#eadfd2}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--ink);font-family:"Palatino Linotype",Palatino,Georgia,serif;background-color:#f5eee5;background-image:radial-gradient(ellipse at 50% 0%,#fffdf9 0,transparent 55%),radial-gradient(#947b6310 .7px,transparent .7px);background-size:auto,8px 8px}
+body::before{position:fixed;inset:14px;content:"";border:1px solid #a78c6c33;pointer-events:none;z-index:5}
+.bg-heart{position:fixed;pointer-events:none;z-index:0;color:#a8896e;opacity:.09;font-size:clamp(130px,23vw,280px);line-height:1}
+.bg-heart.a{top:4%;left:-5%;transform:rotate(-18deg)}.bg-heart.b{right:-5%;bottom:3%;transform:rotate(15deg)}
+main{position:relative;z-index:1;width:min(860px,90%);margin:auto;padding:62px 0 52px}
+header{text-align:center;padding:6px 10px 10px}
+.kicker{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--leaf);font-family:Arial,sans-serif;font-size:.69rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em}
+.kicker::before,.kicker::after{content:"";width:32px;height:1px;background:var(--gold)}
+h1{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-weight:400;color:var(--wine);font-size:clamp(2.65rem,7vw,4.8rem);line-height:1.04;margin:17px 0 13px}
+h1 span{font-style:italic;color:var(--rose)}
+header p{max-width:570px;margin:0 auto;color:#71665e;font-size:1.08rem;line-height:1.8}
+.distance{margin:18px 0 0;color:#8c806e;font-family:Arial,sans-serif;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase}
+.distance span{padding:0 8px;color:var(--gold)}
+.stage{display:grid;place-items:center;min-height:335px;padding:16px 0 27px;perspective:1100px}
+.envelope-wrap{position:relative;width:min(390px,78vw);height:240px;cursor:pointer;outline:none;filter:drop-shadow(0 22px 22px #62483a25);-webkit-tap-highlight-color:transparent}
+.envelope-wrap:focus-visible{border-radius:10px;outline:3px solid #657765;outline-offset:9px}
+.envelope{position:absolute;inset:0;border-radius:5px;background:#b86470;overflow:visible}
+.envelope-back{position:absolute;inset:0;border-radius:5px;background:#a95362}
+.envelope-front{position:absolute;inset:0;overflow:hidden;border-radius:0 0 5px 5px;background:linear-gradient(145deg,#c9757d,#a94e60);clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);z-index:4}
+.envelope-left,.envelope-right{position:absolute;inset:0;z-index:3}
+.envelope-left{background:#bd6874;clip-path:polygon(0 0,50% 58%,0 100%)}
+.envelope-right{background:#b65d6a;clip-path:polygon(100% 0,50% 58%,100% 100%)}
+.flap{position:absolute;inset:0;background:linear-gradient(145deg,#d48789,#bc626f);clip-path:polygon(0 0,100% 0,50% 61%);transform-origin:top;transition:transform .85s cubic-bezier(.2,.75,.25,1);z-index:6;border-radius:5px 5px 0 0}
+.seal{position:absolute;z-index:7;left:50%;top:51%;transform:translate(-50%,-50%);width:54px;height:54px;border:1px solid #e2bd82;border-radius:50%;display:grid;place-items:center;color:#f9e9cf;background:radial-gradient(circle at 35% 30%,#916454,#563d39);box-shadow:0 4px 9px #492b303b;font-size:24px;transition:opacity .3s,transform .3s}
+.letter-peek{position:absolute;left:6%;width:88%;height:85%;bottom:4px;background:var(--paper);border-radius:3px 3px 0 0;z-index:2;transition:transform .9s .35s cubic-bezier(.2,.75,.25,1);box-shadow:0 -3px 10px #55322a16}
+.envelope-wrap.open .flap{transform:rotateX(180deg);z-index:1}
+.envelope-wrap.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.5)}
+.envelope-wrap.open .letter-peek{transform:translateY(-130px)}
+.tap-hint{color:var(--leaf);font-size:.94rem;text-align:center;margin-top:-11px;animation:bob 1.7s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.letter-card{position:relative;isolation:isolate;max-width:740px;margin:0 auto;padding:clamp(25px,6vw,58px);border:1px solid #e7dccd;background:var(--paper);box-shadow:0 20px 55px #5c463014,0 2px 6px #5c46300a;opacity:0;transform:translateY(22px);max-height:0;overflow:hidden;transition:opacity .7s,transform .7s,max-height 1s,padding .5s}
+.letter-card::before{position:absolute;z-index:-1;inset:8px;content:"";border:1px solid #c69a5b36;pointer-events:none}
+.letter-card.visible{opacity:1;transform:none;max-height:1800px;margin-bottom:24px}
+.letter-heading{text-align:center}
+.letter-overline{color:var(--leaf);font-family:Arial,sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.letter-card h2{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-weight:400;color:var(--wine);font-size:clamp(1.8rem,4vw,2.45rem);margin:10px 0 0}
+.paper-rule{display:flex;align-items:center;justify-content:center;gap:11px;margin:19px 0 25px;color:var(--gold);font-size:.78rem}
+.paper-rule::before,.paper-rule::after{content:"";width:min(120px,25%);height:1px;background:var(--line)}
+.writing-area{position:relative;min-height:230px;padding-right:5px}
+.letter-text{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(1.03rem,2.7vw,1.16rem);line-height:2;white-space:pre-wrap;color:#55483f}
+.letter-text::after{content:"";display:inline-block;width:2px;height:1.1em;background:var(--rose);vertical-align:-.18em;margin-left:2px;animation:blink .75s steps(2) infinite}
+.letter-text.done::after{display:none}
+@keyframes blink{50%{opacity:0}}
+.pen{position:absolute;right:7px;top:4px;font-size:29px;transform:rotate(-28deg);filter:drop-shadow(0 3px 2px #a66a8833);opacity:0;z-index:2}
+.pen.writing{opacity:1;animation:writeMove .13s ease-in-out infinite alternate}
+@keyframes writeMove{from{transform:translate(0,0) rotate(-28deg)}to{transform:translate(-3px,2px) rotate(-22deg)}}
+.signature{text-align:right;font-family:"Palatino Linotype",Palatino,Georgia,serif;font-style:italic;font-size:1.34rem;color:var(--rose);margin-top:18px;opacity:0;transition:opacity .6s}
+.signature.show{opacity:1}
+.buttons{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin:27px 0 17px}
+button{font:600 .88rem Arial,sans-serif;border:1px solid transparent;border-radius:2px;padding:13px 20px;min-height:46px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+button:hover{transform:translateY(-2px);box-shadow:0 7px 17px #61463820}
+button:focus-visible{outline:3px solid var(--leaf);outline-offset:3px}
+.primary{background:var(--wine);color:#fffaf2}
+.primary:hover{background:#60323e}
+.secondary{background:transparent;color:var(--leaf);border-color:#bdc2ad}
+.secondary:hover{background:#f2f2e9}
+.note{display:none;max-width:520px;margin:0 auto;padding:17px 20px;border-top:1px solid #d9c9b4;border-bottom:1px solid #d9c9b4;color:#65564b;line-height:1.8;text-align:center}
+.note.show{display:block;animation:fade .45s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+footer{text-align:center;color:#817567;font-size:.86rem;line-height:1.9;padding:8px 0 0}
+.footer-mark{display:block;margin-bottom:4px;color:var(--rose);font-size:1.05rem}
+.float{position:fixed;bottom:-35px;z-index:10;pointer-events:none;animation:rise 4.8s linear forwards}
+@keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.9}100%{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+@media(max-width:560px){body::before{inset:7px}main{width:88%;padding:46px 0 36px}header p{font-size:1rem}.stage{min-height:305px}.envelope-wrap{height:205px}.letter-card.visible{padding:25px 20px}.writing-area{min-height:280px}.letter-text{line-height:1.9}.buttons{flex-direction:column}.buttons button{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="bg-heart a">♡</div><div class="bg-heart b">♡</div>
+<main>
+<header>
+ <div class="kicker">Một điều nhỏ anh muốn gửi em</div>
+ <h1>Gửi <span>Thẻo Thẻo iu</span></h1>
+ <p>Có những lời anh muốn nói thật dịu dàng. Anh viết chúng vào một lá thư nhỏ, dành riêng cho cô gái xinh gái nhất trên Trái Đất.</p>
+ <div class="distance">Sài Gòn <span>✳</span> Bắc Ninh <span>·</span> Luôn nhớ em</div>
+</header>
+
+<section class="stage" aria-label="Phong bì thư">
+ <div>
+    <div class="envelope-wrap" id="envelope" role="button" tabindex="0" aria-label="Bấm để mở thư" aria-expanded="false">
+   <div class="envelope">
+    <div class="envelope-back"></div><div class="letter-peek"></div>
+    <div class="envelope-left"></div><div class="envelope-right"></div>
+    <div class="envelope-front"></div><div class="flap"></div>
+    <div class="seal">♥</div>
+   </div>
+  </div>
+  <div class="tap-hint" id="hint">Chạm vào phong bì để mở thư 💌</div>
+ </div>
+</section>
+
+<section class="letter-card" id="letterCard">
+ <div class="letter-heading">
+  <div class="letter-overline">Viết riêng cho em</div>
+  <h2>Gửi cô gái anh thương</h2>
+ </div>
+ <div class="paper-rule" aria-hidden="true">✳</div>
+ <div class="writing-area">
+  <div class="pen" id="pen" aria-hidden="true">🖋️</div>
+  <div class="letter-text" id="letterText"></div>
+ </div>
+ <div class="signature" id="signature">Thương em, Thẻo Thẻo iu ❤️</div>
+ <div class="buttons">
+  <button class="primary" id="rewrite">Đọc lại lá thư 💌</button>
+  <button class="secondary" id="littleLove">Gửi em chút yêu thương ✨</button>
+ </div>
+ <div class="note" id="note" aria-live="polite">Mong em luôn có thật nhiều điều để vui, có những ngày bình yên và luôn nhớ rằng em xứng đáng với những điều dịu dàng nhất. 💗</div>
+</section>
+<footer><span class="footer-mark" aria-hidden="true">♡</span>Làm riêng cho Thẻo Thẻo iu<br>Hãy đọc lá thư này khi em thấy thoải mái nhé.</footer>
+</main>
+<script>
+const letter = `Thẻo Thẻo à,
+
+Anh ước gì có thể ở cạnh em, tự tay trao em một bó hoa, ôm em thật lâu rồi ngắm em cười. Vì anh vẫn ở Sài Gòn còn em ở Bắc Ninh, nên anh gửi những lời này đến em trước nhé.
+
+Anh không phải lúc nào cũng giỏi nói những lời ngọt ngào, nhưng anh thật lòng trân trọng em và những khoảnh khắc hai đứa mình đã có. Anh mong em luôn vui vẻ, ăn ngon, ngủ ngoan, ngày càng xinh đẹp và gặp thật nhiều điều tốt đẹp.
+
+Nếu có một điều giản dị mà anh mong mỗi ngày, thì đó là được nghe em kể vài chuyện nhỏ, được thấy em cười và được cùng em đi qua những ngày bình thường mà vẫn thấy thương nhau thật nhiều.
+
+Cảm ơn em vì đã xuất hiện trong cuộc đời anh. Mong lá thư nhỏ này mang đến cho em một chút ấm áp và một nụ cười thật xinh. ❤️`;
+const envelope=document.getElementById('envelope');
+const card=document.getElementById('letterCard');
+const textEl=document.getElementById('letterText');
+const pen=document.getElementById('pen');
+const signature=document.getElementById('signature');
+const hint=document.getElementById('hint');
+let typingTimer=null, opened=false;
+function openLetter(){
+ if(opened){card.scrollIntoView({behavior:'smooth',block:'start'});return}
+ opened=true;
+ envelope.classList.add('open');
+ envelope.setAttribute('aria-expanded','true');
+ hint.textContent='Lá thư dành riêng cho em đang được mở ra… 💗';
+ setTimeout(()=>{
+  card.classList.add('visible');
+  setTimeout(()=>{card.scrollIntoView({behavior:'smooth',block:'start'});typeLetter()},450);
+ },650);
+}
+envelope.addEventListener('click',openLetter);
+envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter()}});
+function typeLetter(){
+ clearInterval(typingTimer);
+ textEl.textContent='';textEl.classList.remove('done');signature.classList.remove('show');pen.classList.add('writing');
+ let i=0;
+ typingTimer=setInterval(()=>{
+  textEl.textContent=letter.slice(0,i+1);i++;
+  // Keep the pen visually near the latest line while the text is being written.
+  pen.style.top=Math.min(8+Math.floor(i/54)*31,205)+'px';
+  if(i>=letter.length){
+   clearInterval(typingTimer);typingTimer=null;textEl.classList.add('done');pen.classList.remove('writing');
+   signature.classList.add('show');burst(7);
+  }
+ },27);
+}
+document.getElementById('rewrite').addEventListener('click',()=>{typeLetter();card.scrollIntoView({behavior:'smooth',block:'start'})});
+document.getElementById('littleLove').addEventListener('click',()=>{
+ const note=document.getElementById('note');note.classList.toggle('show');burst(18);
+});
+function burst(n){
+ const icons=['💗','💕','🌷','✨','💖'];
+ for(let i=0;i<n;i++){
+  const el=document.createElement('span');el.className='float';el.textContent=icons[Math.floor(Math.random()*icons.length)];
+  el.style.left=(Math.random()*94+3)+'vw';el.style.fontSize=(18+Math.random()*18)+'px';
+  el.style.animationDuration=(3.4+Math.random()*2.2)+'s';document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
+ }
+}
+</script>
+</body>
+</html>
