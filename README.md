@@ -26,9 +26,10 @@
    - Cây bút dạ quang lướt theo từng dòng chữ, tỏa ra ánh sáng stardust khi viết.
    - Lời thư chứa chan cảm xúc gửi gắm tới người vợ yêu (Thẻo Thẻo).
 
-5. **Giai điệu tình yêu du dương (Web Audio Synthesizer)**:
-   - Bộ tổng hợp âm thanh hộp nhạc / đàn piano êm dịu tích hợp sẵn, không lo lỗi đường link mạng hay bản quyền.
-   - Nút bật/tắt tinh tế trên thanh điều hướng cùng hiệu ứng equalizer sóng nhạc.
+5. **Giai điệu tình yêu du dương**:
+   - Bản piano không lời *Piano Romantic* của AtlasAudio, phát từ Pixabay theo Pixabay Content License.
+   - Bấm nút Giai Điệu trên thanh điều hướng để phát hoặc tạm dừng; cần kết nối Internet để tải nhạc.
+   - Âm thanh chuông mở phong bì được tạo riêng bằng Web Audio API.
 
 6. **Hộp điều ước sao băng & Lời nhắn**:
    - Vợ và chồng có thể nhập những điều ước, lời nhắn yêu thương.

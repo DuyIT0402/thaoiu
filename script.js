@@ -217,24 +217,12 @@ setInterval(updateLoveTimer, 1000);
 updateLoveTimer();
 
 /* ===================================================================
-   3. WEB AUDIO API - TỔNG HỢP ÂM NHẠC LÃNG MẠN DU DƯƠNG
+  3. NHẠC MP3 & WEB AUDIO API CHO CHUÔNG MỞ THƯ
    =================================================================== */
 let audioCtx = null;
 let isPlayingMusic = false;
-let melodyInterval = null;
 const musicBtn = document.getElementById("musicToggle");
-
-// Các nốt nhạc lãng mạn nhẹ nhàng (Hộp âm Cmaj7 / Am9 / Fmaj7 / G)
-const ROMANTIC_CHORDS = [
-  // Hợp âm Cmaj7
-  [261.63, 329.63, 392.00, 493.88],
-  // Hợp âm Am9
-  [220.00, 261.63, 329.63, 493.88],
-  // Hợp âm Fmaj7
-  [174.61, 261.63, 329.63, 392.00],
-  // Hợp âm Gsus4 -> G
-  [196.00, 293.66, 392.00, 493.88]
-];
+const loveMusic = document.getElementById("loveMusic");
 
 function playMelodyNote(freq, timeOffset, duration = 1.6) {
   if (!audioCtx) return;
@@ -256,30 +244,6 @@ function playMelodyNote(freq, timeOffset, duration = 1.6) {
   osc.stop(audioCtx.currentTime + timeOffset + duration);
 }
 
-function playArpeggio() {
-  if (!isPlayingMusic || !audioCtx) return;
-  let chordIndex = 0;
-
-  function nextChord() {
-    if (!isPlayingMusic) return;
-    const chord = ROMANTIC_CHORDS[chordIndex % ROMANTIC_CHORDS.length];
-    
-    // Đánh rải các nốt cách nhau 0.28s
-    chord.forEach((freq, idx) => {
-      playMelodyNote(freq, idx * 0.32, 2.2);
-    });
-
-    // Thêm một nốt giai điệu cao lấp lánh ngẫu nhiên
-    const highNote = chord[Math.floor(Math.random() * chord.length)] * 2;
-    playMelodyNote(highNote, 1.4, 2.0);
-
-    chordIndex++;
-    melodyInterval = setTimeout(nextChord, 2200);
-  }
-
-  nextChord();
-}
-
 function playMagicalChime() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -293,24 +257,30 @@ function playMagicalChime() {
   });
 }
 
-function toggleMusic() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (audioCtx.state === "suspended") {
-    audioCtx.resume();
-  }
-
+async function toggleMusic() {
+  if (!loveMusic || !musicBtn) return;
   if (isPlayingMusic) {
+    loveMusic.pause();
     isPlayingMusic = false;
-    clearTimeout(melodyInterval);
     musicBtn.classList.remove("playing");
     musicBtn.querySelector(".btn-text").textContent = "Giai Điệu";
-  } else {
+    musicBtn.setAttribute("aria-pressed", "false");
+    return;
+  }
+
+  try {
+    loveMusic.volume = 0.55;
+    await loveMusic.play();
     isPlayingMusic = true;
     musicBtn.classList.add("playing");
     musicBtn.querySelector(".btn-text").textContent = "Đang Phát 🎵";
-    playArpeggio();
+    musicBtn.setAttribute("aria-pressed", "true");
+  } catch (error) {
+    isPlayingMusic = false;
+    musicBtn.classList.remove("playing");
+    musicBtn.querySelector(".btn-text").textContent = "Thử lại 🎵";
+    musicBtn.title = "Không tải được nhạc. Hãy kiểm tra kết nối mạng rồi thử lại.";
+    musicBtn.setAttribute("aria-pressed", "false");
   }
 }
 
