@@ -28,7 +28,7 @@
 
 5. **Giai điệu tình yêu du dương**:
    - Bản piano không lời *Piano Romantic* của AtlasAudio, phát từ Pixabay theo Pixabay Content License.
-   - Bấm nút Giai Điệu trên thanh điều hướng để phát hoặc tạm dừng; cần kết nối Internet để tải nhạc.
+   - Trang tự thử phát khi mở; nếu trình duyệt chặn, chạm/bấm vào màn hình bất kỳ để nhạc bắt đầu. Nút Giai Điệu dùng để tạm dừng hoặc phát lại; cần kết nối Internet.
    - Âm thanh chuông mở phong bì được tạo riêng bằng Web Audio API.
 
 6. **Hộp điều ước sao băng & Lời nhắn**:

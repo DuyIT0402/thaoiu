@@ -9,17 +9,17 @@
 const START_DATE = new Date("2026-01-20T00:00:00");
 
 // Nội dung bức thư tình gửi vợ yêu
-const LOVE_LETTER = `Vợ yêu của anh,
+const LOVE_LETTER = `Vợ à,
 
-Từ ngày 20 tháng 01 năm 2026, vũ trụ này đã trao cho anh món quà vô giá nhất cuộc đời — đó chính là em, Thẻo Thẻo dịu dàng và đáng yêu của anh.
+Anh biết trên hành trình yêu nhau, có những lúc anh chưa thể mang đến cho vợ những điều tốt đẹp như anh mong muốn. Hiện tại, anh đang cố gắng từng ngày để xây dựng sự nghiệp, tích lũy cho tương lai và trở thành một người đàn ông đủ trưởng thành, đủ vững vàng để có thể chăm lo cho người mình yêu.
 
-Dù khoảng cách địa lý giữa Sài Gòn và Bắc Ninh có xa xôi, nhưng anh biết mỗi nhịp đập trong lồng ngực này đều hướng về em. Mỗi buổi sáng thức dậy, điều đầu tiên anh nghĩ đến là nụ cười của vợ; mỗi buổi tối chìm vào giấc ngủ, mong ước lớn nhất của anh là được ôm vợ thật chặt vào lòng.
+Anh vẫn nhớ những ngày chúng ta ở bên nhau tại Sài Gòn, cùng đi ăn, đi nhậu, đi hát rồi dạo phố, cùng nhau trải qua những khoảnh khắc thật vui vẻ. Anh vẫn nhớ bó hoa vợ tặng anh ở khách sạn vào ngày cuối cùng trước khi em trở về Hà Nội. Những điều tưởng chừng giản dị ấy lại trở thành những kỷ niệm mà anh luôn trân trọng, bởi người cùng anh trải qua tất cả chính là vợ. Mỗi khi nhớ lại, anh lại thấy thương em nhiều hơn và mong rằng sau này chúng ta sẽ còn có thật nhiều ngày vui vẻ bên nhau như thế.
 
-Cảm ơn em vì đã đến, đã kiên nhẫn, đã yêu thương và cùng anh vun đắp từng khoảnh khắc bình yên. Anh mong vợ yêu của anh luôn vui vẻ, an yên, ăn ngoan, ngủ đẫy giấc và luôn nhớ rằng: ở bất cứ nơi đâu, bất cứ lúc nào, anh cũng luôn là điểm tựa vững chãi nhất của em.
+Anh hiểu rằng tình yêu không chỉ nằm ở những lời hứa, mà còn cần được chứng minh bằng hành động và sự cố gắng mỗi ngày. Anh không muốn vợ chỉ nghe những điều anh nói về tương lai, mà mong một ngày không xa, anh có thể dùng chính những gì mình làm được để khiến vợ an tâm và hạnh phúc.
 
-Hôm nay, ngày mai và mãi mãi về sau, tình yêu anh dành cho em vẫn vẹn nguyên và ngày càng sâu thẳm như những vì sao trên bầu trời đêm.
+Anh biết chặng đường phía trước còn nhiều điều phải cố gắng, nhưng anh vẫn đang từng bước tiến về phía trước, bởi trong những dự định của anh luôn có hình bóng của vợ và một tương lai mà anh mong hai đứa mình có thể cùng nhau vun đắp. Anh mong những kỷ niệm đẹp ở Sài Gòn sẽ không chỉ là những chuyện để chúng ta nhớ về, mà sẽ là khởi đầu cho thật nhiều kỷ niệm đẹp hơn nữa trong những ngày tháng sau này.
 
-Yêu vợ hơn tất cả mọi điều trên thế gian này! ❤️`;
+Anh thương vợ, trân trọng những gì chúng ta đã có và mong rằng mai này, khi nhìn lại chặng đường đã qua, chúng ta vẫn có thể mỉm cười vì đã cùng nhau viết nên một câu chuyện tình yêu thật đẹp. ❤️🌷`;
 
 /* ===================================================================
    1. CANVAS BẦU TRỜI SAO & HIỆU ỨNG THIÊN HÀ
@@ -261,13 +261,14 @@ async function toggleMusic() {
   if (!loveMusic || !musicBtn) return;
   if (isPlayingMusic) {
     loveMusic.pause();
-    isPlayingMusic = false;
-    musicBtn.classList.remove("playing");
-    musicBtn.querySelector(".btn-text").textContent = "Giai Điệu";
-    musicBtn.setAttribute("aria-pressed", "false");
     return;
   }
 
+  await startMusic();
+}
+
+async function startMusic() {
+  if (!loveMusic || !musicBtn || isPlayingMusic) return;
   try {
     loveMusic.volume = 0.55;
     await loveMusic.play();
@@ -278,15 +279,29 @@ async function toggleMusic() {
   } catch (error) {
     isPlayingMusic = false;
     musicBtn.classList.remove("playing");
-    musicBtn.querySelector(".btn-text").textContent = "Thử lại 🎵";
-    musicBtn.title = "Không tải được nhạc. Hãy kiểm tra kết nối mạng rồi thử lại.";
+    const autoplayBlocked = error.name === "NotAllowedError";
+    musicBtn.querySelector(".btn-text").textContent = autoplayBlocked ? "Chạm để nghe 🎵" : "Thử lại 🎵";
+    musicBtn.title = autoplayBlocked
+      ? "Chạm hoặc bấm vào màn hình để bắt đầu phát nhạc."
+      : "Không tải được nhạc. Hãy kiểm tra kết nối mạng rồi thử lại.";
     musicBtn.setAttribute("aria-pressed", "false");
   }
+}
+
+function startMusicOnFirstGesture(event) {
+  document.removeEventListener("pointerdown", startMusicOnFirstGesture, true);
+  document.removeEventListener("keydown", startMusicOnFirstGesture, true);
+  if (event.target instanceof Element && event.target.closest("#musicToggle")) return;
+  startMusic();
 }
 
 if (musicBtn) {
   musicBtn.addEventListener("click", toggleMusic);
 }
+
+document.addEventListener("pointerdown", startMusicOnFirstGesture, true);
+document.addEventListener("keydown", startMusicOnFirstGesture, true);
+startMusic();
 
 /* ===================================================================
    4. PHONG BÌ 3D & HIỆU ỨNG MỞ BỨC THƯ TÌNH
