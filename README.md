@@ -27,7 +27,7 @@
    - Lời thư chứa chan cảm xúc gửi gắm tới người vợ yêu (Thẻo Thẻo).
 
 5. **Giai điệu tình yêu du dương**:
-   - Bản piano không lời *Piano Romantic* của AtlasAudio, phát từ Pixabay theo Pixabay Content License.
+   - Nhạc nền phát từ file `Nơi Tình Yêu Bắt Đầu.mp3` đi kèm dự án.
    - Trang tự thử phát khi mở; nếu trình duyệt chặn, chạm/bấm vào màn hình bất kỳ để nhạc bắt đầu. Nút Giai Điệu dùng để tạm dừng hoặc phát lại; cần kết nối Internet.
    - Âm thanh chuông mở phong bì được tạo riêng bằng Web Audio API.
 

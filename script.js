@@ -261,6 +261,10 @@ async function toggleMusic() {
   if (!loveMusic || !musicBtn) return;
   if (isPlayingMusic) {
     loveMusic.pause();
+    isPlayingMusic = false;
+    musicBtn.classList.remove("playing");
+    musicBtn.querySelector(".btn-text").textContent = "Giai Điệu";
+    musicBtn.setAttribute("aria-pressed", "false");
     return;
   }
 
